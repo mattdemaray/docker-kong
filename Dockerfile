@@ -10,7 +10,8 @@ RUN yum install -y https://github.com/Mashape/kong/releases/download/$KONG_VERSI
 VOLUME ["/etc/kong/"]
 
 COPY config.docker/kong.yml /etc/kong/kong.yml
+COPY set_config.sh /set_config.sh
 
-CMD kong start
+CMD /set_config.sh && kong start
 
 EXPOSE 8000 8443 8001 7946
